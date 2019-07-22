@@ -1,0 +1,5 @@
+<input type="file" id="file" accept="image/*"
+[(ngModel)] = "file_data" (change)="onFileSelected($event)">
+{{this?.final?.size}}
+<button (click)="upload()">upload</button>
+<img [src]="mySrc">
