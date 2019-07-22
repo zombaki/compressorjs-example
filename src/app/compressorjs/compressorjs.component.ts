@@ -11,20 +11,21 @@ export class CompressorjsComponent implements OnInit {
   file: any;
   file_data: File;
   mySrc: any;
-  final:File;
+  final: File;
   constructor() { }
 
   ngOnInit() {
   }
   upload() {
     const _result = this;
-    console.log("this is a test", this.file_data);
+    console.log("this is a test", this.file_data.size);
     new Compressor(this.file_data, {
       quality: 0.6,
       success(result) {
-        console.log("this is a result", result); 
+        console.log("this is a result", result);
+_result.downloadFile(result);
+        // _result.getBase64FromFile(_result.file_data).then(p => _result.mySrc = p);
         this.final = result;
-        _result.getBase64FromFile(_result.file_data).then(p => _result.mySrc = p);
       },
       error(err) {
         console.log(err.message);
@@ -51,6 +52,11 @@ export class CompressorjsComponent implements OnInit {
 
       reader.readAsDataURL(file);
     });
+  }
+  downloadFile(data: any) {
+    //const blob = new Blob([data], { type: 'image/jpeg' });
+    const url = window.URL.createObjectURL(data);
+    window.open(url);
   }
 }
 
