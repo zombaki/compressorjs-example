@@ -20,7 +20,7 @@ export class CompressorjsComponent implements OnInit {
     const _result = this;
     console.log("this is a test", this.file_data.size);
     new Compressor(this.file_data, {
-      quality: 0.6,
+      quality: 0.1,
       success(result) {
         console.log("this is a result", result);
 _result.downloadFile(result);
